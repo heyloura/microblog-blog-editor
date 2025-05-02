@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
             let contents = document.querySelectorAll('.e-content');
             contents = [...contents];
-            for(var i = 0; i < contents.length, i++)
+            for(var i = 0; i < contents.length; i++)
             {
                 let hentry = content.closest('.h-entry');
                 if(!hentry) {
