@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         var NoHEntryException = {};
         // make content editable
         try {
-            let fetching = await fetch(`https://able-hawk-60.deno.dev/categories`, { method: "GET", headers: { "access-control-allow-origin": "*", "Authorization": "Bearer " + localStorage.getItem('in-page-editor-token') } } );
+            let fetching = await fetch(`https://able-hawk-60.deno.dev/categories`, { method: "GET", headers: { "Authorization": "Bearer " + localStorage.getItem('in-page-editor-token') } } );
             const results = await fetching.json();
 
             let contents = document.querySelectorAll('.e-content');
@@ -36,7 +36,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                     content.addEventListener("focusin", (event) => {
                         event.target.innerHTML = event.target.innerHTML.replaceAll('<','&lt;').trim();
                     });
-                    hentry.insertAdjacentHTML('beforebegin',`<form>
+                    hentry.insertAdjacentHTML('afterend',`<form>
                         ${results.categories && results.categories.length > 0 ? 
                             `<fieldset>
                                 <legend>Post Categories</legend>
@@ -46,7 +46,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                                             </label>`;
                                 }).join('')}
                             </fieldset>` : '' }
-                            <button type="button">save</button>
+                            <button type="button">Save Changes</button>
                         </form>`);
                 }
             });
