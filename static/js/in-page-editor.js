@@ -100,19 +100,17 @@ function promptSaveToken() {
     }
 }
 
-function updatePost(id) {
+async function updatePost(id) {
     const form = document.getElementById(`mpe-form-${id}`);
     form.elements["url"].value = window.location;
     form.elements["name"].value = document.querySelector(`[data-mpe-id="${id}"].p-name`) ? document.querySelector(`[data-mpe-id="${id}"].p-name`).innerHTML : '';
     form.elements["content"].value = document.querySelector(`[data-mpe-id="${id}"].e-content`).innerHTML;
 
-    console.log(new FormData(form));
+    console.log(form);
 
-    fetch('https://able-hawk-60.deno.dev/update', {
+    let posting = fetch('https://able-hawk-60.deno.dev/update', {
         method:'post', 
         body: new FormData(form)})
-            .then(r => {
-                alert(r);
-            });
-
+    let response = await posting.text();
+    alert(response);
 }
