@@ -1,0 +1,8 @@
+{
+    "version": "1.0.0",
+    "title": "In Page Editor",
+    "description": "Adds the ability to create and edit posts directly on your blog.",
+    "includes": [
+      "/js/in-page-editor.js"
+    ]
+  }
