@@ -54,7 +54,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                                 }).join('')}
                             </fieldset>` : '' }
                             <textarea class="mpe-textarea">${info.properties.summary.map(function (s) { return s }).join('')}</textarea>
-                            <select name="post-status" class="mpe-select"><option selected="selected" value="published" class="mpe-option">Published</option><option value="draft" class="mpe-option">Draft</option></select>
+                            <select name="status" class="mpe-select"><option selected="selected" value="published" class="mpe-option">Published</option><option value="draft" class="mpe-option">Draft</option></select>
                             <input name="url" type="hidden" />
                             <input name="name" type="hidden" />
                             <input name="content" type="hidden" />
@@ -106,7 +106,7 @@ function updatePost(id) {
     form.elements["name"].value = document.querySelector(`.p-name [data-mpe-id="${id}"]`) ? document.querySelector(`.p-name [data-mpe-id="${id}"]`).value : '';
     form.elements["content"].value = document.querySelector(`.e-content [data-mpe-id="${id}"]`).value;
 
-    fetch('https://able-hawk-60.deno.dev/post', {
+    fetch('https://able-hawk-60.deno.dev/update', {
         method:'post', 
         body: new FormData(form)})
             .then(r => {
