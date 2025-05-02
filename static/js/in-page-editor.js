@@ -103,8 +103,8 @@ function promptSaveToken() {
 function updatePost(id) {
     const form = document.getElementById(`mpe-form-${id}`);
     form.elements["url"].value = window.location;
-    form.elements["name"].value = document.querySelector(`.p-name [data-mpe-id="${id}"]`) ? document.querySelector(`.p-name [data-mpe-id="${id}"]`).innerHTML : '';
-    form.elements["content"].value = document.querySelector(`.e-content [data-mpe-id="${id}"]`).innerHTML;
+    form.elements["name"].value = document.querySelector(`[data-mpe-id="${id}"].p-name`) ? document.querySelector(`[data-mpe-id="${id}"].p-name`).innerHTML : '';
+    form.elements["content"].value = document.querySelector(`[data-mpe-id="${id}"].e-content`).innerHTML;
 
     console.log(new FormData(form));
 
