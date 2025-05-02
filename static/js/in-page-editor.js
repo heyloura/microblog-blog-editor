@@ -6,14 +6,16 @@ document.addEventListener('DOMContentLoaded', () => {
         // make content editable
         let contents = document.querySelectorAll('.e-content');
         contents = [...contents];
-        contents.forEach((content) => {
+        contents.forEach((content,i) => {
             content.setAttribute('contenteditable','plaintext-only');
+            content.setAttribute('data-mpe-id',i);
             content.addEventListener("focusout", (event) => {
                 event.target.innerHTML = event.target.innerText;
             });
             content.addEventListener("focusin", (event) => {
-                event.target.innerHTML = event.target.innerHTML.replaceAll('<','&lt;');
+                event.target.innerHTML = event.target.innerHTML.replaceAll('<','&lt;').trim();
             });
+            content.insertAdjacentHtml('beforebegin','<button>save</button>')
         });
 
         // add save button
