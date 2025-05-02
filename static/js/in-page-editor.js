@@ -25,8 +25,6 @@ document.addEventListener('DOMContentLoaded', async () => {
                 } else {
                     fetching = await fetch(`https://able-hawk-60.deno.dev/info?url=${window.location}`, { method: "GET", headers: { "Authorization": "Bearer " + localStorage.getItem('in-page-editor-token') } } );
                     const info = await fetching.json();
-
-                    console.log(info);
                     
                     let name = hentry.querySelector('.p-name');
 
@@ -53,8 +51,8 @@ document.addEventListener('DOMContentLoaded', async () => {
                                             </label>`;
                                 }).join('')}
                             </fieldset>` : '' }
-                            <textarea class="mpe-textarea">${info.properties.summary.map(function (s) { return s }).join('')}</textarea>
-                            <select name="status" class="mpe-select"><option selected="selected" value="published" class="mpe-option">Published</option><option value="draft" class="mpe-option">Draft</option></select>
+                            <textarea style="display:none;" class="mpe-textarea">${info.properties.summary.map(function (s) { return s }).join('')}</textarea>
+                            <select style="display:none;" name="status" class="mpe-select"><option selected="selected" value="published" class="mpe-option">Published</option><option value="draft" class="mpe-option">Draft</option></select>
                             <input name="url" type="hidden" />
                             <input name="name" type="hidden" />
                             <input name="content" type="hidden" />
@@ -106,11 +104,10 @@ async function updatePost(id) {
     form.elements["name"].value = document.querySelector(`[data-mpe-id="${id}"].p-name`) ? document.querySelector(`[data-mpe-id="${id}"].p-name`).innerHTML : '';
     form.elements["content"].value = document.querySelector(`[data-mpe-id="${id}"].e-content`).innerHTML;
 
-    console.log(form);
-
     let posting = await fetch('https://able-hawk-60.deno.dev/update', {
         method:'post', 
-        body: new FormData(form)})
+        body: new FormData(form),
+        headers: { "Authorization": "Bearer " + localStorage.getItem('in-page-editor-token') }})
     let response = await posting.text();
     alert(response);
 }
