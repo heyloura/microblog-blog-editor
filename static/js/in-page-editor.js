@@ -43,17 +43,19 @@ document.addEventListener('DOMContentLoaded', async () => {
                     content.addEventListener("focusin", (event) => {
                         event.target.innerHTML = event.target.innerHTML.replaceAll('<','&lt;').trim();
                     });
-                    hentry.insertAdjacentHTML('afterend',`<form>
+                    hentry.insertAdjacentHTML('afterend',`<form class="mpe-form">
                         ${results.categories && results.categories.length > 0 ? 
-                            `<fieldset>
-                                <legend>Post Categories</legend>
+                            `<fieldset class="mpe-fieldset">
+                                <legend class="mpe-legend">Post Categories</legend>
                                 ${results.categories.map(item => {
-                                    return `<label>
-                                            <input type="checkbox" name="category[]" value="${item}"> ${item}
+                                    return `<label class="mpe-label">
+                                            <input class="mpe-checkbox" type="checkbox" ${info.properties.category.map(function (c) { return c == item ? 'checked="checked"' : '' }).join('')} name="category[]" value="${item}"> ${item}
                                             </label>`;
                                 }).join('')}
                             </fieldset>` : '' }
-                            <button type="button">Save Changes</button>
+                            <textarea class="mpe-textarea">${info.properties.summary.map(function (s) { return s == item }).join('')}</textarea>
+                            <select class="mpe-select"><option selected="selected" value="published" class="mpe-option">Published</option><option value="draft" class="mpe-option">Draft</option></select>
+                            <button class="mpe-button" type="button">Save Changes</button>
                         </form>`);
                 }
             }
