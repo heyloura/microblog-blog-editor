@@ -43,7 +43,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                     content.addEventListener("focusin", (event) => {
                         event.target.innerHTML = event.target.innerHTML.replaceAll('<','&lt;').trim();
                     });
-                    hentry.insertAdjacentHTML('afterend',`<form class="mpe-form">
+                    hentry.insertAdjacentHTML('afterend',`<form id="mpe-form-${i}" class="mpe-form">
                         ${results.categories && results.categories.length > 0 ? 
                             `<fieldset class="mpe-fieldset">
                                 <legend class="mpe-legend">Post Categories</legend>
@@ -53,9 +53,12 @@ document.addEventListener('DOMContentLoaded', async () => {
                                             </label>`;
                                 }).join('')}
                             </fieldset>` : '' }
-                            <textarea class="mpe-textarea">${info.properties.summary.map(function (s) { return s == item }).join('')}</textarea>
-                            <select class="mpe-select"><option selected="selected" value="published" class="mpe-option">Published</option><option value="draft" class="mpe-option">Draft</option></select>
-                            <button class="mpe-button" type="button">Save Changes</button>
+                            <textarea class="mpe-textarea">${info.properties.summary.map(function (s) { return s }).join('')}</textarea>
+                            <select name="post-status" class="mpe-select"><option selected="selected" value="published" class="mpe-option">Published</option><option value="draft" class="mpe-option">Draft</option></select>
+                            <input name="url" type="hidden" />
+                            <input name="name" type="hidden" />
+                            <input name="content" type="hidden" />
+                            <button onclick="updatePost('${i}')" class="mpe-button" type="button">Save Changes</button>
                         </form>`);
                 }
             }
@@ -95,4 +98,19 @@ function promptSaveToken() {
     } else {
         alert('No token was saved.');
     }
+}
+
+function updatePost(id) {
+    const form = document.getElementById(`mpe-form-${id}`);
+    form.elements["url"].value = window.location;
+    form.elements["name"].value = document.querySelector(`.p-name [data-mpe-id="${id}"]`) ? document.querySelector(`.p-name [data-mpe-id="${id}"]`).value : '';
+    form.elements["content"].value = document.querySelector(`.e-content [data-mpe-id="${id}"]`).value;
+
+    fetch('https://able-hawk-60.deno.dev/post', {
+        method:'post', 
+        body: new FormData(form)})
+            .then(r => {
+                alert(r);
+            });
+
 }
