@@ -14,6 +14,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             contents = [...contents];
             for(var i = 0; i < contents.length; i++)
             {
+                let content = contents[i];
                 let hentry = content.closest('.h-entry');
                 if(!hentry) {
                     throw NoHEntryException;
