@@ -84,7 +84,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     } else if (url.searchParams.has('edit')) {
         // prompt the user to save a micro.blog token
         promptSaveToken();
-        window.location.reload();
+        window.location = window.location.href.split("?")[0];
     } else {
         // don't do anything....
     }
