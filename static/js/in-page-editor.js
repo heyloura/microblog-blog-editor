@@ -12,7 +12,8 @@ document.addEventListener('DOMContentLoaded', async () => {
 
             let contents = document.querySelectorAll('.e-content');
             contents = [...contents];
-            contents.forEach((content,i) => {
+            for(var i = 0; i < contents.length, i++)
+            {
                 let hentry = content.closest('.h-entry');
                 if(!hentry) {
                     throw NoHEntryException;
@@ -54,7 +55,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                             <button type="button">Save Changes</button>
                         </form>`);
                 }
-            });
+            }
         } catch(e) {
             if(e === NoURLException) {
                 alert('No u-url found for content.');
