@@ -9,12 +9,12 @@ document.addEventListener('DOMContentLoaded', () => {
     } else if(localStorage.getItem('in-page-editor-token') && url.searchParams.has('reset')) {
         // user has the token and wishes to reset it.
         promptSaveToken();
-        window.location.href.split("?")[0];
+        window.location = window.location.href.split("?")[0];
     } else if(localStorage.getItem('in-page-editor-token') && url.searchParams.has('logout')) {
         // user has the token and the edit param
         localStorage.setItem('in-page-editor-token', '');
         alert('Thank you for using my editor. Have a great day :-)');
-        window.location.href.split("?")[0];
+        window.location = window.location.href.split("?")[0];
     } else if (url.searchParams.has('edit')) {
         // prompt the user to save a micro.blog token
         promptSaveToken();
