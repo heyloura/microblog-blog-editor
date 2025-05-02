@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         var NoHEntryException = {};
         // make content editable
         try {
-            let fetching = await fetch(`https://able-hawk-60.deno.dev`, { method: "GET", headers: { "access-control-allow-origin": "*", "Authorization": "Bearer " + localStorage.getItem('in-page-editor-token') } } );
+            let fetching = await fetch(`https://able-hawk-60.deno.dev/categories`, { method: "GET", headers: { "access-control-allow-origin": "*", "Authorization": "Bearer " + localStorage.getItem('in-page-editor-token') } } );
             const results = await fetching.json();
 
             let contents = document.querySelectorAll('.e-content');
