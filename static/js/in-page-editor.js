@@ -35,6 +35,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
                     content.setAttribute('contenteditable','plaintext-only');
                     content.setAttribute('data-mpe-id',i);
+                    url.setAttribute('data-mpe-id',i);
                     content.addEventListener("focusout", (event) => {
                         event.target.innerHTML = event.target.innerText;
                     });
@@ -100,7 +101,7 @@ function promptSaveToken() {
 
 async function updatePost(id) {
     const form = document.getElementById(`mpe-form-${id}`);
-    form.elements["url"].value = window.location;
+    form.elements["url"].value = document.querySelector(`[data-mpe-id="${id}"].u-url`);
     form.elements["name"].value = document.querySelector(`[data-mpe-id="${id}"].p-name`) ? document.querySelector(`[data-mpe-id="${id}"].p-name`).innerHTML : '';
     form.elements["content"].value = document.querySelector(`[data-mpe-id="${id}"].e-content`).innerHTML;
 
