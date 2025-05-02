@@ -1,4 +1,5 @@
 document.addEventListener('DOMContentLoaded', async () => {
+    console.log(window.location.href);
     const url = new URL(window.location.href);
     if(localStorage.getItem('in-page-editor-token') && url.searchParams.has('edit')) {
         // user has the token and the edit param
