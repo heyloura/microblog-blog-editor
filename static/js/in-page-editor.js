@@ -108,7 +108,7 @@ async function updatePost(id) {
 
     console.log(form);
 
-    let posting = fetch('https://able-hawk-60.deno.dev/update', {
+    let posting = await fetch('https://able-hawk-60.deno.dev/update', {
         method:'post', 
         body: new FormData(form)})
     let response = await posting.text();
