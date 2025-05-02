@@ -2,8 +2,20 @@ document.addEventListener('DOMContentLoaded', () => {
     const url = new URL(window.location.href);
     if(localStorage.getItem('in-page-editor-token') && url.searchParams.has('edit')) {
         // user has the token and the edit param
-        alert('welcome to edit mode!')
+        alert('welcome to edit mode!');
         // make content editable
+        let contents = document.querySelectorAll('.e-content');
+        contents = [...contents];
+        contents.forEach((content) => {
+            content.setAttribute('contenteditable','plaintext-only');
+            content.addEventListener("focusout", (event) => {
+                event.target.innerHTML = event.target.innerText;
+            });
+            content.addEventListener("focusin", (event) => {
+                event.target.innerHTML = event.target.innerHTML.replaceAll('<','&lt;');
+            });
+        });
+
         // add save button
         // add new button
     } else if(localStorage.getItem('in-page-editor-token') && url.searchParams.has('reset')) {
