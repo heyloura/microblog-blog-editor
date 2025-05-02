@@ -42,7 +42,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                                 <legend>Post Categories</legend>
                                 ${results.categories.map(item => {
                                     return `<label>
-                                            <input type="checkbox" ${categoriesParam.map(function (s) { return s == item ? 'checked="checked"' : '' }).join('')} name="category[]" value="${item}"> ${item}
+                                            <input type="checkbox" name="category[]" value="${item}"> ${item}
                                             </label>`;
                                 }).join('')}
                             </fieldset>` : '' }
