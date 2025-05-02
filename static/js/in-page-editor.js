@@ -85,18 +85,21 @@ document.addEventListener('DOMContentLoaded', async () => {
     } else if (url.searchParams.has('edit')) {
         // prompt the user to save a micro.blog token
         promptSaveToken();
-        window.location = window.location.href.split("?")[0];
+        window.location.reload();
     } else {
         // don't do anything....
+        console.log('nothing');
     }
 });
 
 function promptSaveToken() {
+    console.log('promptSaveToken()');
     let token = prompt("Please enter a Micro.blog token");
     if (token != null) {
         localStorage.setItem('in-page-editor-token', token);
     } else {
         alert('No token was saved.');
+        window.location = window.location.href.split("?")[0];
     }
 }
 
