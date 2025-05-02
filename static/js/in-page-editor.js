@@ -21,6 +21,11 @@ document.addEventListener('DOMContentLoaded', async () => {
                 if(!url || !url.getAttribute('href')) {
                     throw NoURLException;
                 } else {
+                    fetching = await fetch(`https://able-hawk-60.deno.dev/info?url=${window.location}`, { method: "GET", headers: { "Authorization": "Bearer " + localStorage.getItem('in-page-editor-token') } } );
+                    const info = await fetching.json();
+
+                    console.log(info);
+                    
                     let name = hentry.querySelector('.p-name');
 
                     if(name) {
