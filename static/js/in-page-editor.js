@@ -55,9 +55,9 @@ async function makeEditable() {
                         `<fieldset class="mpe-fieldset">
                             <legend class="mpe-legend">Post Categories</legend>
                             ${results.categories.map(item => {
-                                return `<label class="mpe-label">
-                                        <input class="mpe-checkbox" type="checkbox" ${info.properties.category.map(function (c) { return c == item ? 'checked="checked"' : '' }).join('')} name="category[]" value="${item}"> ${item}
-                                        </label>`;
+                                return `
+                                <input id="checkbox-${i}-${item}" class="mpe-checkbox" type="checkbox" ${info.properties.category.map(function (c) { return c == item ? 'checked="checked"' : '' }).join('')} name="category[]" value="${item}"> ${item}
+                                <label for="checkbox-${i}-${item}" class="mpe-label"></label>`;
                             }).join('')}
                         </fieldset>` : '' }
                         <textarea style="display:none;" class="mpe-textarea">${info.properties.summary.map(function (s) { return s }).join('')}</textarea>
