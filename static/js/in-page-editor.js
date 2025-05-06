@@ -1,4 +1,4 @@
-document.body.insertAdjacentHTML('beforeend', '<button onclick="edit()">🗝️</button>');
+document.body.insertAdjacentHTML('beforeend', '<button class="mpe-login" onclick="edit()">🗝️</button>');
 async function edit() {
     if(localStorage.getItem('in-page-editor-token')) {
         // user has the token and the edit param
@@ -57,7 +57,7 @@ async function makeEditable() {
                             ${results.categories.map(item => {
                                 return `
                                 <input id="checkbox-${i}-${item.replaceAll(' ','')}" class="mpe-checkbox" type="checkbox" ${info.properties.category.map(function (c) { return c == item ? 'checked="checked"' : '' }).join('')} name="category[]" value="${item}">
-                                <label for="checkbox-${i}-${item.replaceAll(' ','')}}" class="mpe-label">${item.replaceAll(' ','')}}</label>`;
+                                <label for="checkbox-${i}-${item.replaceAll(' ','')}" class="mpe-label">${item}</label>`;
                             }).join('')}
                         </fieldset>` : '' }
                         <textarea style="display:none;" class="mpe-textarea">${info.properties.summary.map(function (s) { return s }).join('')}</textarea>
